@@ -1,11 +1,11 @@
-import { ScrollView } from "react-native";
-import { Card } from "react-native-elements";
-
+import React from 'react'
+import { ScrollView, Text , View } from 'react-native';
+import { Card } from 'react-native-elements';
 
 
 const ContactScreen = () => {
-
-    <ScrollView>
+    return (
+        <ScrollView>
         <Card wrapperStyle={{ margin: 20 }}>
             <Card.Title>Contact Information</Card.Title>
             <Card.Divider></Card.Divider>
@@ -16,9 +16,9 @@ const ContactScreen = () => {
                 <Text>Phone: 1-206-555-1234  </Text>
                 <Text>Email: campsites@nucamp.co</Text>
             </View>
-
-
-        </Card>
+            </Card>
     </ScrollView>
+    )
 }
+   
 export default ContactScreen;

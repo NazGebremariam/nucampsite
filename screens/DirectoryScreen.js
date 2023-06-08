@@ -21,11 +21,11 @@ const DirectoryScreen = ({ navigation }) => {
     }
 
     return (
-    //    <p>hello world</p> 
-        <FlatList data={props.campsite}
+        <FlatList data={campsites}
                 renderItem={renderDirectoryItem}
                 keyExtractor={item => item.id.toString()} >
         </FlatList>
     )
 }
 export default DirectoryScreen;
+
