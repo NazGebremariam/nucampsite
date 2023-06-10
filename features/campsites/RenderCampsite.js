@@ -1,12 +1,14 @@
-import { Text, View } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Icon } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native-elements';
+import { baseUrl } from '../../shared/baseUrl';
 
-const RenderCampsite = ({ campsite }) => {
-    
+const RenderCampsite = (props) => {
+    const { campsite } = props;
+
     if (campsite) {
         return (
-            <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={campsite.image}>
+            <Card containerStyle={styles.cardContainer}>
+                <Card.Image source={{ uri: baseUrl + campsite.image }}>
                     <View style={{ justifyContent: 'center', flex: 1 }}>
                         <Text
                             style={{
@@ -19,13 +21,69 @@ const RenderCampsite = ({ campsite }) => {
                         </Text>
                     </View>
                 </Card.Image>
-                <Text style={{ margin: 20}}> {campsite.discription} </Text>
+                <Text style={{ margin: 20 }}> {campsite.discription} </Text>
+
+                <View></View>
+                <Icon
+                    name={props.isFavorite ? 'heart' : 'heart-o'}
+                    type='font-awesome'
+                    color='#f50'
+                    raised
+                    reverse
+                    onPress={() => props.isFavorite
+                        ? console.log('Already set as a favorite')
+                        : props.markFavorite()
+
+                    }
+                />
+
+                <Icon
+                    name='pincel'
+                    type='font-awesome'
+                    color='#5637DD'
+                    raised
+                    reverse
+                    onPress={() => props.onShowModal()}
+                // ? console.log('Already set as a favorite')
+                // : props.markFavorite()
+
+                />
+                <View />
             </Card>
-        )
+        );
     }
     return <View />;
-}
+};
 
+
+
+<View />
+const styles = StyleSheet.create({
+    cardContainer: {
+        padding: 0,
+        margin: 0,
+        marginBottom: 20
+
+    },
+
+    carRow: {
+        alignItems: 'center',
+        justifyCount: 'center',
+        flex: '1',
+        flexDirection: 'row',
+        margin: '20'
+    },
+
+    cardText: {
+    extShadowColor: 'rgba(0,0,0,1)',
+    textShadowOffset: { width: -1, heght: 1 },
+    textSadowRadius: '20',
+    textAlign: 'center',
+    color: 'white',
+    fontSize: '20'
+    }
+})
+            
 
 
 export default RenderCampsite;
