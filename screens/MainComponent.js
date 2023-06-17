@@ -21,7 +21,7 @@ import {
   import ContactScreen from "./ContactScreen";
   import ReservationScreen from "./ReservationScreen";
   import { Icon } from "react-native-elements";
-  import logo from "../assets/images/logo.png";
+  import { logo } from "../public/images/logo.png";
   import { useDispatch } from "react-redux";
   import { useEffect } from "react";
   import { fetchPartners } from "../features/partners/partnersSlice";
