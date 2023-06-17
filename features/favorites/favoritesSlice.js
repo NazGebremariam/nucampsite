@@ -14,6 +14,7 @@ const favoritesSlice = createSlice({
             }
         }
     }
+    
 });
 
 export const { toggleFavorite } = favoritesSlice.actions;

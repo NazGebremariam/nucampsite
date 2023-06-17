@@ -18,18 +18,19 @@ const ReservationScreen = () => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
-    const onDateChange = (event, selectedDate) => { }
-    const currentDate = selectedDate || date;
-    setShowCalendar(Platform.OS === 'ios');
-    setDate(currentDate);
+    const onDateChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShowCalendar(Platform.OS === 'ios');
+        setDate(currentDate);
+    };
 
     const handleReservation = () => {
         console.log('campers:', campers);
         console.log('hikeIn:', hikeIn);
         console.log('date:', date);
         setShowModal(!showModal);
-        
     };
+
     const resetForm = () => {
         setCampers(1);
         setHikeIn(false);
@@ -39,10 +40,10 @@ const ReservationScreen = () => {
 
     return (
         <ScrollView>
-            <View style={StyleSheet.formRow}>
-                <Text style={StyleSheet.formRow}>Number of Campers:</Text>
+            <View style={styles.formRow}>
+                <Text style={styles.formLabel}>Number of Campers:</Text>
                 <Picker
-                    style={Styles.formItem}
+                    style={styles.formItem}
                     selectedValue={campers}
                     onValueChange={(itemValue) => setCampers(itemValue)}
                 >
@@ -55,7 +56,7 @@ const ReservationScreen = () => {
                 </Picker>
             </View>
             <View style={styles.formRow}>
-                <Text style={styles.formLabel}>Hi In?</Text>
+                <Text style={styles.formLabel}>Hike In?</Text>
                 <Switch
                     style={styles.formItem}
                     value={hikeIn}
@@ -81,7 +82,7 @@ const ReservationScreen = () => {
                     onChange={onDateChange}
                 />
             )}
-            <View style={styles.form}>
+            <View style={styles.formRow}>
                 <Button
                     onPress={() => handleReservation()}
                     title='Search Availability'
@@ -90,11 +91,10 @@ const ReservationScreen = () => {
                 />
             </View>
             <Modal
-            animationType='slide'
-            transparent={false}
-            visible={showModal}
-            onRequestClose={() =>setShowModal(!showModal)}
-
+                animationType='slide'
+                transparent={false}
+                visible={showModal}
+                onRequestClose={() => setShowModal(!showModal)}
             >
                 <View style={styles.modal}>
                     <Text style={styles.modalTitle}>
@@ -102,28 +102,21 @@ const ReservationScreen = () => {
                     </Text>
                     <Text style={styles.modalText}>
                         Number of Campers: {campers}
-                        </Text>
-
-                        <Text style={styles.modalText}>
-                      Hike-In?: {hikeIn ? 'Yes' : 'No'}
-                        </Text>
-
-                        <Text style={styles.modalText}>
-                       Date: {date.toLocaleDateString('en-US')}
-                        </Text>
-                        <Button
+                    </Text>
+                    <Text style={styles.modalText}>
+                        Hike-In?: {hikeIn ? 'Yes' : 'No'}
+                    </Text>
+                    <Text style={styles.modalText}>
+                        Date: {date.toLocaleDateString('en-US')}
+                    </Text>
+                    <Button
                         onPress={() => {
                             setShowModal(!showModal);
                             resetForm();
                         }}
                         color='#5637DD'
                         title='Close'
-
-
-                        />
-                            
-                        
-
+                    />
                 </View>
             </Modal>
         </ScrollView>
@@ -132,7 +125,7 @@ const ReservationScreen = () => {
 
 const styles = StyleSheet.create({
     formRow: {
-        alignItem: 'center',
+        alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
         flexDirection: 'row',
@@ -164,4 +157,3 @@ const styles = StyleSheet.create({
 });
 
 export default ReservationScreen;
-
